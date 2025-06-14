@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <audio id="audioteste" controls>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        Seu navegador não suporta áudios.
+        
+    </audio>
+    <br>
+    <button onclick="mostrarTempo()">Tempo Atual</button>     
+    <button onclick="Mute()">Ativar/Desativar Mute</button>
+    <button onclick="analisarPausa()">Pausado?</button>
+    <button onclick="alterarVelocidade(2)">Velocidade x2</button>
+    <button onclick="carregarMidia()">Recarregar</button>
+    <button onclick="mostrarDuracao()">Duração</button>
+    <button onclick="verificarFim()">Terminou?</button>
+    <button onclick="seeking2()">seeking</button>
+    <button onclick="readyState3()">readyState3</button>
+
+    <p id="info"></p>
+
+    <script>
+        let audio = document.getElementById("audioteste");
+        let info = document.getElementById("info");
+
+        function mostrarTempo() {
+            info.innerText = "Tempo Atual: " + audio.currentTime.toFixed(2) + "s (Áudio)";
+        }
+
+        function Mute() {
+            audio.muted = !audio.muted;
+            info.innerText = audio.muted ? "Áudio Mutado" : "Som Ativado";
+        }
+
+        function analisarPausa() {
+            info.innerText = audio.paused ? "Áudio pausado" : "Áudio rodando";
+        }
+
+        function alterarVelocidade(velocidade) {
+            audio.playbackRate = velocidade;
+            info.innerText = "Velocidade alterada para " + velocidade + "x";
+        }
+
+        function carregarMidia() {
+            audio.load();
+            info.innerText = "Mídia recarregada.";
+        }
+
+        function mostrarDuracao() {
+            info.innerText = "Duração: " + audio.duration.toFixed(2) + "s (Áudio)";
+        }
+
+        function verificarFim() {
+            info.innerText = audio.ended ? "Áudio terminou" : "Áudio em andamento";
+        }
+        function  seeking2(){
+            info.innerText = audio.seeking;
+        }
+        function  readyState3(){
+            info.innerText = audio.readyState;
+
+        }
+    </script>
+</body>
+</html>

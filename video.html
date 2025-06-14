@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <video id="videoteste" width="320" height="240" poster="https://www.w3schools.com/html/pic_trulli.jpg" controls>
+        <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+
+    <track src="legenda.vtt" kind="subtitles" srclang="pt" label="Português" default>
+        Seu navegador não suporta vídeos.
+    </video>
+
+
+    <br>
+    <button onclick="RetornaURL()">retornaURL</button>
+    <button onclick="Controls()">controls</button>
+    <button onclick="Autoplay()">autoplay</button>
+    <button onclick="loop()">loop</button>
+    <button onclick="Poster()">poster</button>
+ 
+
+    <p id="info"></p> <!-- utilizei esse comando para mostrar na tela as coisas que atribui no js-->
+
+    <script>
+        let video = document.getElementById("videoteste");
+        let info = document.getElementById("info");
+
+        video.addEventListener("pause",function(){ // criei esse comando para que possa mostrar um alerta quando pausar
+              if (!video.ended) { <!--verificando se o video terminou-->
+            alert("O Urso foi descansar, volte daqui meia hora.");
+              }
+        })
+
+        video.addEventListener("ended",function(){ // criei esse comando para que possa mostrar um alert quando acabar 
+            
+            alert("O Urso já descançou, mas o vídeo acabou.");
+                
+              
+        })
+
+        function RetornaURL() { //retorna URL
+            info.innerText = "CurrentSrc: " + video.currentSrc;
+        }
+
+        function Controls() { // ressponsavel por fazer aparecer e desaparecer a barra de comandos do video
+            video.controls = !video.controls;
+            info.innerText = "controls:" + video.controls;
+        }
+
+        function Autoplay() { //toca automaticamente apos carregar
+            video.autoplay = !video.autoplay;
+            info.innerText = "Autoplay" + video.autoplay;
+        }
+
+        function loop() { // video reinicia automaticamente depois de terminar 
+            video.loop = !video.loop;
+             video.autoplay = true; // faz com que ele inicie sozinho 
+            info.innerText = "loop" + video.loop;
+        }
+      
+        function Poster() { // comando que altera a imagem do poster
+            video.poster = "https://www.w3schools.com/html/img_girl.jpg";
+            info.innerText = "Poster alterado.";
+        }
+
+    </script>
+
+</body>
+
+</html>
